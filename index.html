@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <label for="title"
+        >Title:
+        <input type="text" name="title" />
+      </label>
+      <label for="description"
+        >Description:
+        <input type="text" name="description" />
+      </label>
+      <label for="due-date"
+        >Due Date:
+        <input type="date" name="due-date" />
+      </label>
+      <label for="Priority"
+        >Priority:
+        <select name="priority" id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="now">Now!</option>
+        </select>
+      </label>
+      <button type="submit" class="submit-todo">submit</button>
+    </form>
+    <div class="projects-container">
+      <div class="projects"></div>
+    </div>
+    <div class="tasks-container">
+      <div class="tasks"></div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
