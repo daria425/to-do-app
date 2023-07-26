@@ -1,8 +1,7 @@
 class project {
   toDoItemsArray = [];
-  constructor(name, description) {
+  constructor(name) {
     this.name = name;
-    this.description = description;
   }
 }
 class toDo {
@@ -52,15 +51,15 @@ function createProject() {
 }
 
 //event listeners
-function submitToDo() {
-  const toDoForm = document.querySelector(".to-do-form");
-  toDoForm.addEventListener("submit", addToProject);
-}
+// function submitToDo() {
+//   const toDoForm = document.querySelector(".to-do-form");
+//   toDoForm.addEventListener("submit", addToProject);
+// }
 
-function submitProject() {
-  const projectForm = document.querySelector(".project-form");
-  projectForm.addEventListener("submit", addNewProject);
-}
+// function submitProject() {
+//   const projectForm = document.querySelector(".project-form");
+//   projectForm.addEventListener("submit", addNewProject);
+// }
 
 //on to-do form submit, create a toDo and push it to the project
 function addToProject() {
@@ -77,4 +76,4 @@ function addNewProject() {
   console.log(projectsArray);
 }
 
-export { createToDo, submitToDo, submitProject, addToProject };
+export { projectsArray, defaultProject, createToDo, addToProject };

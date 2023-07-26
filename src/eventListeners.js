@@ -1,10 +1,11 @@
 import { displayToDo } from "./DOMmanipulation";
-import { addToProject, addNewProject } from "./createToDo";
+import { addToProject, addNewProject, projectsArray } from "./createToDo";
 function submitToDo() {
   const toDoForm = document.querySelector(".to-do-form");
   toDoForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    displayToDo(addToProject());
+    addToProject();
+    displayToDo(projectsArray);
   });
 }
 
