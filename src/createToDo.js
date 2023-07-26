@@ -63,16 +63,15 @@ function submitProject() {
 }
 
 //on to-do form submit, create a toDo and push it to the project
-function addToProject(e) {
-  e.preventDefault();
+function addToProject() {
   const item = createToDo();
   defaultProject.toDoItemsArray.push(item);
   console.log(defaultProject);
+  return item;
 }
 
 //on project form submit, make a new project objecg and push to the array of projects
-function addNewProject(e) {
-  e.preventDefault();
+function addNewProject() {
   const userProject = createProject();
   projectsArray.push(userProject);
   console.log(projectsArray);

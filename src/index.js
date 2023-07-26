@@ -1,3 +1,3 @@
-import { createToDo } from "./createToDo";
+import { submitToDo } from "./eventListeners";
 
-createToDo();
+submitToDo();
