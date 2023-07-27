@@ -1,4 +1,4 @@
-class controller {
+class logicControllerCl {
   allProjects = [];
   activeProject;
   createProject(name) {
@@ -42,8 +42,8 @@ class toDo {
     this.priority = priority;
   }
 }
-const logicController = new controller();
-export { controller, project, toDo, logicController };
+const logicController = new logicControllerCl();
+export { project, toDo, logicController, logicControllerCl };
 //when form submits:
 //toDo item is created when form submits
 //the project that creates the toDo is dependent on the project that is currently active

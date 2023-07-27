@@ -22,15 +22,17 @@ toDoForm.addEventListener("submit", function (e) {
   toDoForm.classList.toggle("visible");
 });
 
-// function submitProject() {
-//   const projectForm = document.querySelector(".project-form");
-//   projectForm.addEventListener("submit", function (e) {
-//     e.preventDefault();
-//     addNewProject();
-//     displayNewProject(projectsArray);
-//     projectForm.classList.toggle("visible");
-//   });
-// }
+const projectForm = document.querySelector(".project-form");
+projectForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  DOMcontroller.arrayPusher(
+    logicController.createProject(
+      document.querySelector("input[name=project-title]").value
+    )
+  );
+  DOMcontroller.displayProject();
+  projectForm.classList.toggle("visible");
+});
 
 const newTaskBtn = document.querySelector(".add-new-task-btn");
 newTaskBtn.addEventListener("click", function () {
@@ -38,10 +40,10 @@ newTaskBtn.addEventListener("click", function () {
   document.querySelector(".to-do-form").classList.toggle("visible");
 });
 
-// const newProjectBtn = document.querySelector(".add-new-project-btn");
-// newProjectBtn.addEventListener("click", function () {
-//   document.querySelector(".project-form").classList.toggle("visible");
-// });
+const newProjectBtn = document.querySelector(".add-new-project-btn");
+newProjectBtn.addEventListener("click", function () {
+  document.querySelector(".project-form").classList.toggle("visible");
+});
 
-export { newTaskBtn };
+export { newTaskBtn, newProjectBtn };
 // export { submitToDo, submitProject };
