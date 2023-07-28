@@ -18,43 +18,52 @@ class domControllerCl extends logicControllerCl {
     const selectedTask = button.parentElement;
     selectedTask.parentElement.removeChild(selectedTask);
   }
+  displayToDo() {
+    const itemContainer = document.querySelector(".tasks");
+    const item = document.createElement("div");
+    item.classList.add("item");
+    const itemTitle = document.createElement("div");
+    itemTitle.classList.add("item-title");
+
+    const itemDesc = document.createElement("div");
+    itemDesc.classList.add("item-description");
+
+    const itemDate = document.createElement("div");
+    itemDate.classList.add("item-due-date");
+
+    const itemPriority = document.createElement("div");
+    itemPriority.classList.add("item-priority");
+    for (let i = 0; i < this.activeProject["toDoItemsArray"].length; i++) {
+      item.dataset.index = i;
+      itemTitle.textContent = this.activeProject["toDoItemsArray"][i]["title"];
+      itemDesc.textContent =
+        this.activeProject["toDoItemsArray"][i]["description"];
+      itemDate.textContent = this.activeProject["toDoItemsArray"][i]["dueDate"];
+      itemPriority.textContent =
+        this.activeProject["toDoItemsArray"][i]["priority"];
+    }
+    const deleteToDobtn = document.createElement("button");
+    deleteToDobtn.classList.add("delete-todo-btn");
+    deleteToDobtn.textContent = "delete";
+    deleteToDobtn.addEventListener("click", function (e) {
+      removeElement(e);
+      reassignIndex();
+    });
+    const editToDobtn = document.createElement("button");
+    editToDobtn.classList.add("edit-todo-btn");
+    editToDobtn.textContent = "edit";
+    item.append(
+      itemTitle,
+      itemDesc,
+      itemDate,
+      itemPriority,
+      deleteToDobtn,
+      editToDobtn
+    );
+    itemContainer.appendChild(item);
+  }
 }
 const DOMcontroller = new domControllerCl();
-
-DOMcontroller.displayToDo = function () {
-  const itemContainer = document.querySelector(".tasks");
-  const item = document.createElement("div");
-  item.classList.add("item");
-  const itemTitle = document.createElement("div");
-  itemTitle.classList.add("item-title");
-
-  const itemDesc = document.createElement("div");
-  itemDesc.classList.add("item-description");
-
-  const itemDate = document.createElement("div");
-  itemDate.classList.add("item-due-date");
-
-  const itemPriority = document.createElement("div");
-  itemPriority.classList.add("item-priority");
-  for (let i = 0; i < this.activeProject["toDoItemsArray"].length; i++) {
-    item.dataset.index = i;
-    itemTitle.textContent = this.activeProject["toDoItemsArray"][i]["title"];
-    itemDesc.textContent =
-      this.activeProject["toDoItemsArray"][i]["description"];
-    itemDate.textContent = this.activeProject["toDoItemsArray"][i]["dueDate"];
-    itemPriority.textContent =
-      this.activeProject["toDoItemsArray"][i]["priority"];
-  }
-  const deleteToDobtn = document.createElement("button");
-  deleteToDobtn.classList.add("delete-todo-btn");
-  deleteToDobtn.textContent = "delete";
-  deleteToDobtn.addEventListener("click", function (e) {
-    removeElement(e);
-    reassignIndex();
-  });
-  item.append(itemTitle, itemDesc, itemDate, itemPriority, deleteToDobtn);
-  itemContainer.appendChild(item);
-};
 
 DOMcontroller.displayProject = function () {
   const projectContainer = document.querySelector(".projects");
@@ -102,8 +111,21 @@ DOMcontroller.displayAll = function () {
     const deleteToDobtn = document.createElement("button");
     deleteToDobtn.classList.add("delete-todo-btn");
     deleteToDobtn.textContent = "delete";
-    deleteToDobtn.addEventListener("click", removeElement);
-    item.append(itemTitle, itemDesc, itemDate, itemPriority, deleteToDobtn);
+    deleteToDobtn.addEventListener("click", function (e) {
+      removeElement(e);
+      reassignIndex();
+    });
+    const editToDobtn = document.createElement("button");
+    editToDobtn.classList.add("edit-todo-btn");
+    editToDobtn.textContent = "edit";
+    item.append(
+      itemTitle,
+      itemDesc,
+      itemDate,
+      itemPriority,
+      deleteToDobtn,
+      editToDobtn
+    );
     itemContainer.appendChild(item);
   }
 };
@@ -125,11 +147,11 @@ DOMcontroller.displayAll = function () {
 
 function removeElement(e) {
   const arrayPosition = e.target.parentElement.dataset.index;
-  logicController.deleteToDo(arrayPosition);
-  DOMcontroller.deleteToDo(arrayPosition);
+  logicController.activeProject.deleteToDo(arrayPosition);
   DOMcontroller.removeFromDom(e.target);
 }
 function reassignIndex() {
+  //makes an array of all the tasks on screen and reassigns them a data index value-links DOM elements back to their position within the activeProject's todoitems array
   let tasks = document.querySelectorAll(".item");
   for (let i = 0; i < tasks.length; i++) {
     tasks[i].dataset.index = i;
