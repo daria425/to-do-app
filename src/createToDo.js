@@ -15,6 +15,9 @@ class logicControllerCl {
       this.allProjects.push(project);
     }
   }
+  deleteToDo(arrayPosition) {
+    this.activeProject["toDoItemsArray"].splice(arrayPosition, 1);
+  }
 }
 class project {
   toDoItemsArray = [];

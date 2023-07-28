@@ -14,6 +14,10 @@ class domControllerCl extends logicControllerCl {
   arrayPusher(item) {
     this.allProjects.push(item);
   }
+  removeFromDom(button) {
+    const selectedTask = button.parentElement;
+    selectedTask.parentElement.removeChild(selectedTask);
+  }
 }
 const DOMcontroller = new domControllerCl();
 
@@ -44,6 +48,10 @@ DOMcontroller.displayToDo = function () {
   const deleteToDobtn = document.createElement("button");
   deleteToDobtn.classList.add("delete-todo-btn");
   deleteToDobtn.textContent = "delete";
+  deleteToDobtn.addEventListener("click", function (e) {
+    removeElement(e);
+    reassignIndex();
+  });
   item.append(itemTitle, itemDesc, itemDate, itemPriority, deleteToDobtn);
   itemContainer.appendChild(item);
 };
@@ -94,6 +102,7 @@ DOMcontroller.displayAll = function () {
     const deleteToDobtn = document.createElement("button");
     deleteToDobtn.classList.add("delete-todo-btn");
     deleteToDobtn.textContent = "delete";
+    deleteToDobtn.addEventListener("click", removeElement);
     item.append(itemTitle, itemDesc, itemDate, itemPriority, deleteToDobtn);
     itemContainer.appendChild(item);
   }
@@ -114,6 +123,18 @@ DOMcontroller.displayAll = function () {
 //   projectContainer.appendChild(homePage);
 // }
 
+function removeElement(e) {
+  const arrayPosition = e.target.parentElement.dataset.index;
+  logicController.deleteToDo(arrayPosition);
+  DOMcontroller.deleteToDo(arrayPosition);
+  DOMcontroller.removeFromDom(e.target);
+}
+function reassignIndex() {
+  let tasks = document.querySelectorAll(".item");
+  for (let i = 0; i < tasks.length; i++) {
+    tasks[i].dataset.index = i;
+  }
+}
 function removeTasksFromDOM() {
   const tasks = document.querySelector(".tasks");
   while (tasks.firstChild) {
