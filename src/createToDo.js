@@ -15,12 +15,13 @@ class logicControllerCl {
       this.allProjects.push(project);
     }
   }
-  deleteToDo(arrayPosition) {
-    this.activeProject["toDoItemsArray"].splice(arrayPosition, 1);
-  }
+  // deleteToDo(arrayPosition) {
+  //   this.activeProject["toDoItemsArray"].splice(arrayPosition, 1);
+  // }
 }
 class project {
   toDoItemsArray = [];
+  activeToDo;
   constructor(name) {
     this.name = name;
   }
@@ -34,6 +35,21 @@ class project {
   }
   deleteToDo(arrayIndex) {
     this.toDoItemsArray.splice(arrayIndex, 1);
+    console.log(this.toDoItemsArray);
+  }
+  editToDo(title, description, dueDate, priority) {
+    this.activeToDo["title"] = title;
+
+    this.activeToDo["description"] = description;
+
+    this.activeToDo["dueDate"] = dueDate;
+
+    this.activeToDo["priority"] = priority;
+    return this.activeToDo;
+  }
+  saveToDoAsActive(toDo) {
+    this.activeToDo = toDo;
+    console.log(this.toDoItemsArray.indexOf(this.activeToDo)); //reference to array position!!
   }
 }
 class toDo {

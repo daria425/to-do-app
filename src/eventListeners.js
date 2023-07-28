@@ -4,14 +4,14 @@
 import "./events.css";
 import { logicController } from "./createToDo";
 import { DOMcontroller } from "./DOMmanipulation";
-const titleInput = document.querySelector("input[name=title]");
-const descInput = document.querySelector("input[name=description]");
-const dateInput = document.querySelector("input[name=due-date]");
-const priorityInput = document.querySelector("select");
 
 const toDoForm = document.querySelector(".to-do-form");
 toDoForm.addEventListener("submit", function (e) {
   e.preventDefault();
+  const titleInput = document.querySelector("input[name=title]");
+  const descInput = document.querySelector("input[name=description]");
+  const dateInput = document.querySelector("input[name=due-date]");
+  const priorityInput = document.querySelector("select");
   logicController.activeProject.createToDo(
     titleInput.value,
     descInput.value,
@@ -34,9 +34,27 @@ projectForm.addEventListener("submit", function (e) {
   projectForm.classList.toggle("visible");
 });
 
+//when edit form submits:
+//
+const editForm = document.querySelector(".edit-to-do-form");
+editForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const titleInput = document.querySelector("input[name=edit-title]");
+  const descInput = document.querySelector("input[name=edit-description]");
+  const dateInput = document.querySelector("input[name=edit-due-date]");
+  const priorityInput = document.querySelector("select[name=edit-priority]");
+  logicController.activeProject.editToDo(
+    titleInput.value,
+    descInput.value,
+    dateInput.value,
+    priorityInput.value
+  );
+  DOMcontroller.updateTextContent();
+  editForm.classList.toggle("visible");
+});
+
 const newTaskBtn = document.querySelector(".add-new-task-btn");
 newTaskBtn.addEventListener("click", function () {
-  console.log("hello");
   document.querySelector(".to-do-form").classList.toggle("visible");
 });
 

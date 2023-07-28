@@ -55,11 +55,11 @@ class domControllerCl extends logicControllerCl {
     editToDobtn.classList.add("edit-todo-btn");
     editToDobtn.textContent = "edit";
     editToDobtn.addEventListener("click", function (e) {
-      const arrayPosition = e.target.dataset.index;
+      const arrayPosition = e.target.parentElement.dataset.index;
       DOMcontroller.activeProject.saveToDoAsActive(
         DOMcontroller.activeProject["toDoItemsArray"][arrayPosition]
       );
-      fillForm(arrayPosition);
+      fillForm();
       document.querySelector(".edit-to-do-form").classList.toggle("visible");
     });
     item.append(
@@ -71,6 +71,19 @@ class domControllerCl extends logicControllerCl {
       editToDobtn
     );
     itemContainer.appendChild(item);
+  }
+  updateTextContent() {
+    const tasks = document.querySelectorAll(".item");
+    const selectedTask =
+      tasks[
+        this.activeProject.toDoItemsArray.indexOf(this.activeProject.activeToDo)
+      ];
+    const [title, description, dueDate, priority, ...buttons] =
+      selectedTask.children;
+    title.textContent = this.activeProject.activeToDo["title"];
+    description.textContent = this.activeProject.activeToDo["description"];
+    dueDate.textContent = this.activeProject.activeToDo["dueDate"];
+    priority.textContent = this.activeProject.activeToDo["priority"];
   }
 }
 const DOMcontroller = new domControllerCl();
@@ -132,7 +145,10 @@ DOMcontroller.displayAll = function () {
     editToDobtn.textContent = "edit";
     editToDobtn.addEventListener("click", function (e) {
       const arrayIndex = e.target.parentElement.dataset.index;
-      fillForm(arrayIndex);
+      DOMcontroller.activeProject.saveToDoAsActive(
+        DOMcontroller.activeProject["toDoItemsArray"][arrayIndex]
+      );
+      fillForm();
       document.querySelector(".edit-to-do-form").classList.toggle("visible");
     });
     item.append(
@@ -147,21 +163,33 @@ DOMcontroller.displayAll = function () {
   }
 };
 
-function fillForm(arrayIndex) {
+function fillForm() {
   const titleInput = document.querySelector("input[name=edit-title]");
   const descInput = document.querySelector("input[name=edit-description]");
   const dateInput = document.querySelector("input[name=edit-due-date]");
   const priorityInput = document.querySelector("select[name=edit-priority]");
-  titleInput.value =
-    DOMcontroller.activeProject["toDoItemsArray"][arrayIndex]["title"];
-  descInput.value =
-    DOMcontroller.activeProject["toDoItemsArray"][arrayIndex]["description"];
-  dateInput.value =
-    DOMcontroller.activeProject["toDoItemsArray"][arrayIndex]["dueDate"];
-  priorityInput.value =
-    DOMcontroller.activeProject["toDoItemsArray"][arrayIndex]["priority"];
+  titleInput.value = DOMcontroller.activeProject.activeToDo["title"];
+  descInput.value = DOMcontroller.activeProject.activeToDo["description"];
+  dateInput.value = DOMcontroller.activeProject.activeToDo["dueDate"];
+  priorityInput.value = DOMcontroller.activeProject.activeToDo["priority"];
 }
 
+// function updateTextContent() {
+//   const tasks = document.querySelectorAll(".item");
+//   const selectedTask =
+//     tasks[
+//       DOMcontroller.activeProject.toDoItemsArray.indexOf(
+//         DOMcontroller.activeProject.activeToDo
+//       )
+//     ];
+//   const [title, description, dueDate, priority, ...buttons] =
+//     selectedTask.children;
+//   title.textContent = DOMcontroller.activeProject.activeToDo["title"];
+//   description.textContent =
+//     DOMcontroller.activeProject.activeToDo["description"];
+//   dueDate.textContent = DOMcontroller.activeProject.activeToDo["dueDate"];
+//   priority.textContent = DOMcontroller.activeProject.activeToDo["priority"];
+// }
 // function displayHomePage(projectArray) {
 //   const projectContainer = document.querySelector(".projects");
 //   const homePage = document.createElement("div");
