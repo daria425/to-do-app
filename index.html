@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <form action="">
+    <header><div class="app-name">TaskMGMT
+    </div></header>
+    <form action="" class="to-do-form">
       <label for="title"
         >Title:
         <input type="text" name="title" />
@@ -20,7 +23,7 @@
         >Due Date:
         <input type="date" name="due-date" />
       </label>
-      <label for="Priority"
+      <label for="priority"
         >Priority:
         <select name="priority" id="priority">
           <option value="low">Low</option>
@@ -31,11 +34,50 @@
       </label>
       <button type="submit" class="submit-todo">submit</button>
     </form>
-    <div class="projects-container">
-      <div class="projects"></div>
+    <form action="" class="project-form">
+      <label for="project-title"
+        >Project Title:
+        <input type="text" name="project-title" />
+      </label>
+      <button type="submit" class="submit-project">submit</button>
+    </form>
+    <form action="" class="edit-to-do-form">
+      <label for="title"
+        >Title:
+        <input type="text" name="edit-title" />
+      </label>
+      <label for="description"
+        >Description:
+        <input type="text" name="edit-description" />
+      </label>
+      <label for="due-date"
+        >Due Date:
+        <input type="date" name="edit-due-date" />
+      </label>
+      <label for="edit-priority"
+        >Priority:
+        <select name="edit-priority" id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="now">Now!</option>
+        </select>
+      </label>
+      <button type="submit" class="submit-todo">submit</button>
+    </form>
+    <div class="content">
+      <div class="projects-container">
+        <div class="projects-container-title">Projects <button class="add-new-project-btn">+</button></div>
+        <div class="projects">
+         
+        </div>
+      </div>
+      <div class="tasks-container">
+        <div class="tasks-container-title">Tasks <button class="add-new-task-btn">new task</button></div>
+        <div class="tasks">
+        </div>
     </div>
-    <div class="tasks-container">
-      <div class="tasks"></div>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>
