@@ -9,6 +9,7 @@ class logicControllerCl {
     return newProject;
   }
   saveAsActive(project) {
+    console.log(this);
     this.activeProject = project;
     console.log(this.activeProject);
     if (!this.allProjects.includes(project)) {
