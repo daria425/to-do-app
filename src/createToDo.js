@@ -6,6 +6,7 @@ class logicControllerCl {
     this.allProjects.push(newProject);
     console.log(this.allProjects);
     console.log(newProject);
+    localStorage.setItem("data", JSON.stringify(this));
     return newProject;
   }
   saveAsActive(project) {
@@ -15,6 +16,7 @@ class logicControllerCl {
     if (!this.allProjects.includes(project)) {
       this.allProjects.push(project);
     }
+    localStorage.setItem("data", JSON.stringify(this));
   }
   // deleteToDo(arrayPosition) {
   //   this.activeProject["toDoItemsArray"].splice(arrayPosition, 1);
@@ -32,11 +34,13 @@ class project {
     console.log(this.toDoItemsArray);
     console.log(newItem);
     console.log(logicController);
+    localStorage.setItem("data", JSON.stringify(logicController));
     return newItem;
   }
   deleteToDo(arrayIndex) {
     this.toDoItemsArray.splice(arrayIndex, 1);
     console.log(this.toDoItemsArray);
+    localStorage.setItem("data", JSON.stringify(logicController));
   }
   editToDo(title, description, dueDate, priority) {
     this.activeToDo["title"] = title;
@@ -46,10 +50,12 @@ class project {
     this.activeToDo["dueDate"] = dueDate;
 
     this.activeToDo["priority"] = priority;
+    localStorage.setItem("data", JSON.stringify(logicController));
     return this.activeToDo;
   }
   saveToDoAsActive(toDo) {
     this.activeToDo = toDo;
+    localStorage.setItem("data", JSON.stringify(logicController));
     console.log(this.toDoItemsArray.indexOf(this.activeToDo)); //reference to array position!!
   }
 }
