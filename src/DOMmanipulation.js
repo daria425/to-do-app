@@ -121,6 +121,7 @@ DOMcontroller.displayProject = function () {
     removeTasksFromDOM();
     DOMcontroller.activeProject = DOMcontroller.allProjects[arrayPosition - 1];
     reassignProjectIndex();
+    DOMcontroller.displayAll();
     console.log(DOMcontroller);
   });
   editingContainer.append(newProject, deleteProjectBtn);
@@ -155,6 +156,7 @@ DOMcontroller.displayAllProjects = function () {
       DOMcontroller.activeProject =
         DOMcontroller.allProjects[arrayPosition - 1];
       reassignProjectIndex();
+      DOMcontroller.displayAll();
       console.log(DOMcontroller);
     });
     editingContainer.append(newProject, deleteProjectBtn);

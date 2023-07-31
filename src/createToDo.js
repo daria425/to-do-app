@@ -21,6 +21,7 @@ class logicControllerCl {
     localStorage.setItem("data", JSON.stringify(this));
   }
   deleteProject(arrayIndex) {
+    console.log(this.allProjects[arrayIndex].toDoItemsArray);
     this.allProjects.splice(arrayIndex, 1);
     this.activeProject = this.allProjects[arrayIndex - 1];
     console.log(this);
