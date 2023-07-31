@@ -167,3 +167,6 @@ form {
   display: none;
   background-color: red;
 }
+.new-project {
+  width: 70%;
+}
