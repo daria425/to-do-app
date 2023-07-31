@@ -127,6 +127,7 @@ DOMcontroller.displayAllProjects = function () {
     });
     projectContainer.appendChild(newProject);
   }
+  //modified
 };
 DOMcontroller.displayAll = function () {
   const itemContainer = document.querySelector(".tasks");

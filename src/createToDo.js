@@ -26,6 +26,7 @@ class logicControllerCl {
   // deleteToDo(arrayPosition) {
   //   this.activeProject["toDoItemsArray"].splice(arrayPosition, 1);
   // }
+  //modified
 }
 class project {
   static idCounter = 0;
