@@ -167,6 +167,11 @@ form {
   display: none;
   background-color: red;
 }
+
 .new-project {
   width: 70%;
+}
+
+.projects > :first-child > button {
+  display: none;
 }
