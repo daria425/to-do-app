@@ -48,6 +48,7 @@ class project {
     console.log(this.toDoItemsArray);
     console.log(newItem);
     console.log(logicController);
+    // console.log(this.activeProject === this.allProjects[0]);
     localStorage.setItem("data", JSON.stringify(logicController));
     return newItem;
   }

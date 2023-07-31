@@ -152,6 +152,8 @@ DOMcontroller.displayAllProjects = function () {
       logicController.deleteProject(arrayPosition);
       DOMcontroller.removeFromDom(deleteProjectBtn);
       removeTasksFromDOM();
+      DOMcontroller.activeProject =
+        DOMcontroller.allProjects[arrayPosition - 1];
       reassignProjectIndex();
       console.log(DOMcontroller);
     });
