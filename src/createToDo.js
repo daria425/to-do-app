@@ -15,9 +15,15 @@ class logicControllerCl {
     console.log(this);
     this.activeProject = project;
     console.log(this.activeProject);
-    if (!this.allProjects.includes(project)) {
-      this.allProjects.push(project);
-    }
+    // if (!this.allProjects.includes(project)) {
+    //   this.allProjects.push(project);
+    // }
+    localStorage.setItem("data", JSON.stringify(this));
+  }
+  deleteProject(arrayIndex) {
+    this.allProjects.splice(arrayIndex, 1);
+    this.activeProject = this.allProjects[arrayIndex - 1];
+    console.log(this);
     localStorage.setItem("data", JSON.stringify(this));
   }
   static of(projectArray, activeItem) {

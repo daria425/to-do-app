@@ -9,6 +9,7 @@
 //   }
 // }
 import { logicController, logicControllerCl, project } from "./createToDo";
+import "./events.css";
 
 class domControllerCl extends logicControllerCl {
   constructor(projectArray, activeItem) {
@@ -93,11 +94,17 @@ let DOMcontroller = new domControllerCl();
 
 DOMcontroller.displayProject = function () {
   const projectContainer = document.querySelector(".projects");
+  const editingContainer = document.createElement("div");
+  editingContainer.classList.add("editing-container");
   const newProject = document.createElement("div");
   newProject.classList.add("new-project");
+  const deleteProjectBtn = document.createElement("button");
+  deleteProjectBtn.classList.add("delete-project-btn");
+  deleteProjectBtn.textContent = "delete";
 
   for (let i = 0; i < this.allProjects.length; i++) {
     newProject.dataset.index = i;
+    editingContainer.dataset.index = i;
     newProject.textContent = this.allProjects[i]["name"];
   }
   newProject.addEventListener("click", function (e) {
@@ -107,17 +114,32 @@ DOMcontroller.displayProject = function () {
     removeTasksFromDOM();
     DOMcontroller.displayAll();
   });
-  projectContainer.appendChild(newProject);
+  deleteProjectBtn.addEventListener("click", function (e) {
+    const arrayPosition = e.target.parentElement.dataset.index;
+    logicController.deleteProject(arrayPosition);
+    DOMcontroller.removeFromDom(deleteProjectBtn);
+    removeTasksFromDOM();
+    DOMcontroller.activeProject = DOMcontroller.allProjects[arrayPosition - 1];
+    reassignProjectIndex();
+    console.log(DOMcontroller);
+  });
+  editingContainer.append(newProject, deleteProjectBtn);
+  projectContainer.appendChild(editingContainer);
 };
 DOMcontroller.displayAllProjects = function () {
   const projectContainer = document.querySelector(".projects");
   for (let i = 0; i < this.allProjects.length; i++) {
+    const editingContainer = document.createElement("div");
+    editingContainer.classList.add("editing-container");
     const newProject = document.createElement("div");
     newProject.classList.add("new-project");
 
+    editingContainer.dataset.index = i;
     newProject.dataset.index = i;
     newProject.textContent = this.allProjects[i]["name"];
-
+    const deleteProjectBtn = document.createElement("button");
+    deleteProjectBtn.classList.add("delete-project-btn");
+    deleteProjectBtn.textContent = "delete";
     newProject.addEventListener("click", function (e) {
       const arrayPosition = e.target.dataset.index;
       DOMcontroller.saveAsActive(DOMcontroller.allProjects[arrayPosition]);
@@ -125,7 +147,16 @@ DOMcontroller.displayAllProjects = function () {
       removeTasksFromDOM();
       DOMcontroller.displayAll();
     });
-    projectContainer.appendChild(newProject);
+    deleteProjectBtn.addEventListener("click", function (e) {
+      const arrayPosition = e.target.parentElement.dataset.index;
+      logicController.deleteProject(arrayPosition);
+      DOMcontroller.removeFromDom(deleteProjectBtn);
+      removeTasksFromDOM();
+      reassignProjectIndex();
+      console.log(DOMcontroller);
+    });
+    editingContainer.append(newProject, deleteProjectBtn);
+    projectContainer.appendChild(editingContainer);
   }
   //modified
 };
@@ -244,6 +275,16 @@ function removeTasksFromDOM() {
   const tasks = document.querySelector(".tasks");
   while (tasks.firstChild) {
     tasks.removeChild(tasks.lastChild);
+  }
+}
+function reassignProjectIndex() {
+  let projectContainers = document.querySelectorAll(".editing-container");
+  for (let i = 0; i < projectContainers.length; i++) {
+    projectContainers[i].dataset.index = i;
+  }
+  let projects = document.querySelectorAll(".new-project");
+  for (let i = 0; i < projects.length; i++) {
+    projects[i].dataset.index = i;
   }
 }
 export { DOMcontroller };

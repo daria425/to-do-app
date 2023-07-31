@@ -21,7 +21,8 @@ import { storedObj } from "./storageHelper";
 if (localStorage.length === 0) {
   const Home = logicController.createProject("Home");
   logicController.saveAsActive(Home);
-  DOMcontroller.saveAsActive(Home);
+  DOMcontroller.activeProject = logicController.activeProject;
+  DOMcontroller.allProjects = logicController.allProjects;
   DOMcontroller.displayProject();
 } else {
   console.log(storedObj);
@@ -72,5 +73,5 @@ if (localStorage.length === 0) {
 //   "low"
 // );
 // DOMcontroller.displayToDo();
-console.log(logicController);
-console.log(DOMcontroller);
+// console.log(logicController);
+// console.log(DOMcontroller);

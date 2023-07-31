@@ -1,3 +1,7 @@
 .visible {
   display: block;
 }
+
+.selected {
+  background-color: beige;
+}

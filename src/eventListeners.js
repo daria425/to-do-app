@@ -25,11 +25,11 @@ toDoForm.addEventListener("submit", function (e) {
 const projectForm = document.querySelector(".project-form");
 projectForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  DOMcontroller.arrayPusher(
-    logicController.createProject(
-      document.querySelector("input[name=project-title]").value
-    )
+
+  logicController.createProject(
+    document.querySelector("input[name=project-title]").value
   );
+
   DOMcontroller.displayProject();
   projectForm.classList.toggle("visible");
 });
