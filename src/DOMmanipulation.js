@@ -11,6 +11,9 @@
 import { logicController, logicControllerCl, project } from "./createToDo";
 
 class domControllerCl extends logicControllerCl {
+  constructor(projectArray, activeItem) {
+    super(projectArray, activeItem);
+  }
   arrayPusher(item) {
     this.allProjects.push(item);
   }
@@ -86,7 +89,7 @@ class domControllerCl extends logicControllerCl {
     priority.textContent = this.activeProject.activeToDo["priority"];
   }
 }
-const DOMcontroller = new domControllerCl();
+let DOMcontroller = new domControllerCl();
 
 DOMcontroller.displayProject = function () {
   const projectContainer = document.querySelector(".projects");
@@ -106,7 +109,25 @@ DOMcontroller.displayProject = function () {
   });
   projectContainer.appendChild(newProject);
 };
+DOMcontroller.displayAllProjects = function () {
+  const projectContainer = document.querySelector(".projects");
+  for (let i = 0; i < this.allProjects.length; i++) {
+    const newProject = document.createElement("div");
+    newProject.classList.add("new-project");
 
+    newProject.dataset.index = i;
+    newProject.textContent = this.allProjects[i]["name"];
+
+    newProject.addEventListener("click", function (e) {
+      const arrayPosition = e.target.dataset.index;
+      DOMcontroller.saveAsActive(DOMcontroller.allProjects[arrayPosition]);
+      logicController.saveAsActive(logicController.allProjects[arrayPosition]);
+      removeTasksFromDOM();
+      DOMcontroller.displayAll();
+    });
+    projectContainer.appendChild(newProject);
+  }
+};
 DOMcontroller.displayAll = function () {
   const itemContainer = document.querySelector(".tasks");
 

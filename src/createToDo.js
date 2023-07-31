@@ -1,6 +1,8 @@
 class logicControllerCl {
-  allProjects = [];
-  activeProject;
+  constructor(projectArray, activeItem) {
+    this.allProjects = projectArray || [];
+    this.activeProject = activeItem;
+  }
   createProject(name) {
     const newProject = new project(name);
     this.allProjects.push(newProject);
@@ -18,15 +20,20 @@ class logicControllerCl {
     }
     localStorage.setItem("data", JSON.stringify(this));
   }
+  static of(projectArray, activeItem) {
+    return new logicControllerCl(projectArray, activeItem);
+  }
   // deleteToDo(arrayPosition) {
   //   this.activeProject["toDoItemsArray"].splice(arrayPosition, 1);
   // }
 }
 class project {
-  toDoItemsArray = [];
-  activeToDo;
-  constructor(name) {
+  static idCounter = 0;
+  constructor(name, toDoItemsArray, activeItem) {
     this.name = name;
+    this.toDoItemsArray = toDoItemsArray || [];
+    this.activeToDo = activeItem;
+    this.id = ++project.idCounter;
   }
   createToDo(title, description, dueDate, priority) {
     const newItem = new toDo(title, description, dueDate, priority);
@@ -58,17 +65,25 @@ class project {
     localStorage.setItem("data", JSON.stringify(logicController));
     console.log(this.toDoItemsArray.indexOf(this.activeToDo)); //reference to array position!!
   }
+  static of(name, items, activeItem) {
+    return new project(name, items, activeItem);
+  }
 }
 class toDo {
+  static idCounter = 0;
   completed = false;
   constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.id = ++toDo.idCounter;
+  }
+  static of(title, description, dueDate, priority) {
+    return new toDo(title, description, dueDate, priority);
   }
 }
-const logicController = new logicControllerCl();
+let logicController = new logicControllerCl();
 export { project, toDo, logicController, logicControllerCl };
 //when form submits:
 //toDo item is created when form submits
