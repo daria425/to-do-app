@@ -19,8 +19,8 @@ import { DOMcontroller } from "./DOMmanipulation";
 import { storedObj } from "./storageHelper";
 
 if (localStorage.length === 0) {
-  const Home = logicController.createProject("Home");
-  logicController.saveAsActive(Home);
+  const All = logicController.createProject("All");
+  logicController.saveAsActive(All);
   DOMcontroller.activeProject = logicController.activeProject;
   DOMcontroller.allProjects = logicController.allProjects;
   DOMcontroller.displayProject();

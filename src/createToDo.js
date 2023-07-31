@@ -48,13 +48,29 @@ class project {
     console.log(this.toDoItemsArray);
     console.log(newItem);
     console.log(logicController);
-    // console.log(this.activeProject === this.allProjects[0]);
+    if (logicController.activeProject !== logicController.allProjects[0]) {
+      logicController.allProjects[0].toDoItemsArray.push(newItem);
+    }
     localStorage.setItem("data", JSON.stringify(logicController));
     return newItem;
   }
   deleteToDo(arrayIndex) {
-    this.toDoItemsArray.splice(arrayIndex, 1);
+    let splicedVal = this.toDoItemsArray.splice(arrayIndex, 1);
     console.log(this.toDoItemsArray);
+    let searchVal = splicedVal[0].id;
+    if (logicController.activeProject !== logicController.allProjects[0]) {
+      for (
+        let i = 0;
+        i < logicController.allProjects[0].toDoItemsArray.length;
+        i++
+      ) {
+        if (logicController.allProjects[0].toDoItemsArray[i].id == searchVal) {
+          logicController.allProjects[0].toDoItemsArray.splice(i, 1);
+          i--;
+        }
+      }
+    }
+    console.log(logicController);
     localStorage.setItem("data", JSON.stringify(logicController));
   }
   editToDo(title, description, dueDate, priority) {
