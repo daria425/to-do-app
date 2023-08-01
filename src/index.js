@@ -33,7 +33,8 @@ if (localStorage.length === 0) {
     let newProject = new project(
       storedObj.allProjects[i].name,
       storedObj.allProjects[i].toDoItemsArray,
-      storedObj.allProjects[i].activeToDo
+      storedObj.allProjects[i].activeToDo,
+      storedObj.allProjects[i].id
     );
     console.log(newProject);
     newArray.push(newProject);
