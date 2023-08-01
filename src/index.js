@@ -47,7 +47,8 @@ if (localStorage.length === 0) {
         value.title,
         value.description,
         value.dueDate,
-        value.priority
+        value.priority,
+        value.completed
       );
       return value;
     });

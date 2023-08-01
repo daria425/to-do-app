@@ -47,6 +47,9 @@ class domControllerCl extends logicControllerCl {
       itemDate.textContent = this.activeProject["toDoItemsArray"][i]["dueDate"];
       itemPriority.textContent =
         this.activeProject["toDoItemsArray"][i]["priority"];
+      if (this.activeProject["toDoItemsArray"][i]["completed"] === true) {
+        item.classList.add("completed");
+      }
     }
     const deleteToDobtn = document.createElement("button");
     deleteToDobtn.classList.add("delete-todo-btn");
@@ -68,11 +71,24 @@ class domControllerCl extends logicControllerCl {
       fillForm();
       document.querySelector(".edit-to-do-form").classList.toggle("visible");
     });
+    const completionBtn = document.createElement("button");
+    completionBtn.classList.add("completion-btn");
+    completionBtn.textContent = "mark complete";
+    completionBtn.addEventListener("click", function (e) {
+      const arrayPosition = e.target.parentElement.dataset.index;
+      DOMcontroller.activeProject.saveToDoAsActive(
+        DOMcontroller.activeProject["toDoItemsArray"][arrayPosition]
+      );
+      DOMcontroller.activeProject.setCompletion();
+      console.log(DOMcontroller.activeProject.activeToDo);
+      e.target.parentElement.classList.add("completed");
+    });
     item.append(
       itemTitle,
       itemDesc,
       itemDate,
       itemPriority,
+      completionBtn,
       deleteToDobtn,
       editToDobtn
     );
@@ -191,6 +207,10 @@ DOMcontroller.displayAll = function () {
   for (let i = 0; i < this.activeProject["toDoItemsArray"].length; i++) {
     const item = document.createElement("div");
     item.classList.add("item");
+    if (this.activeProject["toDoItemsArray"][i]["completed"]) {
+      console.log("fn working");
+      item.classList.add("completed");
+    }
     const itemTitle = document.createElement("div");
     itemTitle.classList.add("item-title");
 
@@ -229,11 +249,24 @@ DOMcontroller.displayAll = function () {
       fillForm();
       document.querySelector(".edit-to-do-form").classList.toggle("visible");
     });
+    const completionBtn = document.createElement("button");
+    completionBtn.classList.add("completion-btn");
+    completionBtn.textContent = "mark complete";
+    completionBtn.addEventListener("click", function (e) {
+      const arrayPosition = e.target.parentElement.dataset.index;
+      DOMcontroller.activeProject.saveToDoAsActive(
+        DOMcontroller.activeProject["toDoItemsArray"][arrayPosition]
+      );
+      DOMcontroller.activeProject.setCompletion();
+      console.log(DOMcontroller.activeProject.activeToDo);
+      e.target.parentElement.classList.add("completed");
+    });
     item.append(
       itemTitle,
       itemDesc,
       itemDate,
       itemPriority,
+      completionBtn,
       deleteToDobtn,
       editToDobtn
     );

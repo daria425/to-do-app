@@ -107,19 +107,23 @@ class project {
     localStorage.setItem("data", JSON.stringify(logicController));
     console.log(this.toDoItemsArray.indexOf(this.activeToDo)); //reference to array position!!
   }
+  setCompletion() {
+    this.activeToDo["completed"] = true;
+    localStorage.setItem("data", JSON.stringify(logicController));
+  }
   static of(name, items, activeItem) {
     return new project(name, items, activeItem);
   }
 }
 class toDo {
   static idCounter = 0;
-  completed = false;
-  constructor(title, description, dueDate, priority) {
+  constructor(title, description, dueDate, priority, completed) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.id = ++toDo.idCounter;
+    this.completed = completed || false;
   }
   static of(title, description, dueDate, priority) {
     return new toDo(title, description, dueDate, priority);

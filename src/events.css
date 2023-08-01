@@ -13,3 +13,8 @@
 .activated {
   background-color: blue;
 }
+
+.completed {
+  text-decoration: line-through;
+  background-color: #c8bcd6;
+}
