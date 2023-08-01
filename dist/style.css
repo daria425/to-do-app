@@ -167,6 +167,9 @@ form {
   display: none;
   background-color: red;
 }
+form > input {
+  display: inline;
+}
 
 .new-project {
   width: 70%;
