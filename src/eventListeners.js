@@ -63,6 +63,20 @@ newProjectBtn.addEventListener("click", function () {
   document.querySelector(".project-form").classList.toggle("visible");
 });
 
+const closeToDoForm = document.querySelector(".close-to-do-form");
+closeToDoForm.addEventListener("click", function () {
+  toDoForm.classList.toggle("visible");
+});
+
+const editToDoForm = document.querySelector(".close-edit-form");
+editToDoForm.addEventListener("click", function () {
+  editForm.classList.toggle("visible");
+});
+
+const closeProjectForm = document.querySelector(".close-project-form");
+closeProjectForm.addEventListener("click", function () {
+  projectForm.classList.toggle("visible");
+});
 function removeOtherBackgrounds() {
   const projects = document.querySelectorAll(".new-project");
   for (let i = 0; i < projects.length; i++) {
