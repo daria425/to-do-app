@@ -125,9 +125,10 @@ table {
 }
 
 :root {
-  --main-color: #fff6e8;
-  --side-bar-color: #1f1e1d;
-  --header-color: #9b948b;
+  --main-color: #f3e8ff;
+  --side-bar-color: #221d25;
+  --header-color: #907ea5;
+  --focus-color: #c8bcd6;
   --margins: 5px;
 }
 html {
@@ -165,6 +166,8 @@ header {
 }
 .tasks-container {
   background-color: var(--main-color);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .projects-container-title {
@@ -172,6 +175,12 @@ header {
 }
 .tasks-container-title {
   margin-top: 100px;
+  margin-bottom: 10px;
+}
+.tasks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
 }
 form {
   position: fixed;
@@ -233,4 +242,39 @@ button[type="submit"] {
 
 .projects > :first-child > button {
   display: none;
+}
+
+.item {
+  background-color: var(--header-color);
+  padding: 5px;
+  border-radius: 5px;
+}
+.item:focus-within {
+  transition: 0.1s;
+  background-color: var(--focus-color);
+}
+.item > div {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 0.7em;
+}
+/* task fields */
+.item-title::before {
+  content: "Title: ";
+  font-weight: 700;
+}
+
+.item-description::before {
+  content: "Description: ";
+  font-weight: 700;
+}
+
+.item-due-date::before {
+  content: "Due-date: ";
+  font-weight: 700;
+}
+
+.item-priority::before {
+  content: "Priority: ";
+  font-weight: 700;
 }
