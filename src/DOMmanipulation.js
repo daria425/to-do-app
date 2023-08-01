@@ -9,6 +9,7 @@
 //   }
 // }
 import { logicController, logicControllerCl, project } from "./createToDo";
+import { addBackground } from "./eventListeners";
 import "./events.css";
 
 class domControllerCl extends logicControllerCl {
@@ -100,6 +101,7 @@ DOMcontroller.displayProject = function () {
   newProject.classList.add("new-project");
   const deleteProjectBtn = document.createElement("button");
   deleteProjectBtn.classList.add("delete-project-btn");
+  // deleteProjectBtn.classList.toggle("hidden");
   deleteProjectBtn.textContent = "delete";
 
   for (let i = 0; i < this.allProjects.length; i++) {
@@ -113,6 +115,7 @@ DOMcontroller.displayProject = function () {
     logicController.saveAsActive(logicController.allProjects[arrayPosition]);
     removeTasksFromDOM();
     DOMcontroller.displayAll();
+    // deleteProjectBtn.classList.toggle("hidden");
   });
   deleteProjectBtn.addEventListener("click", function (e) {
     const arrayPosition = e.target.parentElement.dataset.index;
@@ -126,6 +129,7 @@ DOMcontroller.displayProject = function () {
   });
   editingContainer.append(newProject, deleteProjectBtn);
   projectContainer.appendChild(editingContainer);
+  addBackground();
 };
 DOMcontroller.displayAllProjects = function () {
   const projectContainer = document.querySelector(".projects");
@@ -161,6 +165,7 @@ DOMcontroller.displayAllProjects = function () {
     });
     editingContainer.append(newProject, deleteProjectBtn);
     projectContainer.appendChild(editingContainer);
+    addBackground();
   }
   //modified
 };

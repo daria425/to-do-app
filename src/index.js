@@ -17,6 +17,7 @@ import {
 import { newTaskBtn, newProjectBtn } from "./eventListeners";
 import { DOMcontroller } from "./DOMmanipulation";
 import { storedObj } from "./storageHelper";
+import "./events.css";
 
 if (localStorage.length === 0) {
   const All = logicController.createProject("All");

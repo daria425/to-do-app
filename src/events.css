@@ -5,3 +5,11 @@
 .selected {
   background-color: beige;
 }
+
+.hidden {
+  display: none;
+}
+
+.activated {
+  background-color: blue;
+}

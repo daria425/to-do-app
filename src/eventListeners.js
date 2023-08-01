@@ -63,5 +63,19 @@ newProjectBtn.addEventListener("click", function () {
   document.querySelector(".project-form").classList.toggle("visible");
 });
 
-export { newTaskBtn, newProjectBtn };
+function addBackground() {
+  const projects = document.querySelectorAll(".new-project");
+  for (let i = 0; i < projects.length; i++) {
+    projects[i].addEventListener("click", function () {
+      console.log("running");
+      // remove active class for all elements
+      for (let i = 0; i < projects.length; i++) {
+        projects[i].classList.remove("activated");
+      }
+      // add active to clicked element
+      this.classList.add("activated");
+    });
+  }
+}
+export { newTaskBtn, newProjectBtn, addBackground };
 // export { submitToDo, submitProject };
