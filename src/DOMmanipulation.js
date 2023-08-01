@@ -21,6 +21,7 @@ class domControllerCl extends logicControllerCl {
   }
   removeFromDom(button) {
     const selectedTask = button.parentElement;
+    //
     selectedTask.parentElement.removeChild(selectedTask);
   }
   displayToDo() {
@@ -101,7 +102,7 @@ DOMcontroller.displayProject = function () {
   newProject.classList.add("new-project");
   const deleteProjectBtn = document.createElement("button");
   deleteProjectBtn.classList.add("delete-project-btn");
-  // deleteProjectBtn.classList.toggle("hidden");
+  deleteProjectBtn.classList.add("hidden");
   deleteProjectBtn.textContent = "delete";
 
   for (let i = 0; i < this.allProjects.length; i++) {
@@ -114,24 +115,28 @@ DOMcontroller.displayProject = function () {
     DOMcontroller.saveAsActive(DOMcontroller.allProjects[arrayPosition]);
     logicController.saveAsActive(logicController.allProjects[arrayPosition]);
     removeOtherBackgrounds();
-    addBg(newProject);
+    addBg(newProject, deleteProjectBtn);
     removeTasksFromDOM();
     DOMcontroller.displayAll();
     // deleteProjectBtn.classList.toggle("hidden");
   });
   deleteProjectBtn.addEventListener("click", function (e) {
     const arrayPosition = e.target.parentElement.dataset.index;
+    console.log(e.target.parentElement.previousSibling.children);
+    const [proj, btn] = e.target.parentElement.previousSibling.children;
     logicController.deleteProject(arrayPosition);
     DOMcontroller.removeFromDom(deleteProjectBtn);
     removeTasksFromDOM();
     DOMcontroller.activeProject = DOMcontroller.allProjects[arrayPosition - 1];
     reassignProjectIndex();
+    removeOtherBackgrounds();
+    addBg(proj, btn);
     DOMcontroller.displayAll();
     console.log(DOMcontroller);
   });
   editingContainer.append(newProject, deleteProjectBtn);
   projectContainer.appendChild(editingContainer);
-  addBg(newProject);
+  addBg(newProject, deleteProjectBtn);
 };
 DOMcontroller.displayAllProjects = function () {
   const projectContainer = document.querySelector(".projects");
@@ -147,29 +152,36 @@ DOMcontroller.displayAllProjects = function () {
     const deleteProjectBtn = document.createElement("button");
     deleteProjectBtn.classList.add("delete-project-btn");
     deleteProjectBtn.textContent = "delete";
+    deleteProjectBtn.classList.add("hidden");
     newProject.addEventListener("click", function (e) {
       const arrayPosition = e.target.dataset.index;
       DOMcontroller.saveAsActive(DOMcontroller.allProjects[arrayPosition]);
       logicController.saveAsActive(logicController.allProjects[arrayPosition]);
       removeOtherBackgrounds();
-      addBg(newProject);
+      addBg(newProject, deleteProjectBtn);
       removeTasksFromDOM();
       DOMcontroller.displayAll();
     });
     deleteProjectBtn.addEventListener("click", function (e) {
       const arrayPosition = e.target.parentElement.dataset.index;
+      console.log(e.target.parentElement.previousSibling.children);
+      const [proj, btn] = e.target.parentElement.previousSibling.children;
+
       logicController.deleteProject(arrayPosition);
       DOMcontroller.removeFromDom(deleteProjectBtn);
       removeTasksFromDOM();
       DOMcontroller.activeProject =
         DOMcontroller.allProjects[arrayPosition - 1];
       reassignProjectIndex();
+      // console.log(e.target.parentElement.previousSibling);
+      removeOtherBackgrounds();
+      addBg(proj, btn);
       DOMcontroller.displayAll();
       console.log(DOMcontroller);
     });
     editingContainer.append(newProject, deleteProjectBtn);
     projectContainer.appendChild(editingContainer);
-    addBg(newProject);
+    addBg(newProject, deleteProjectBtn);
   }
   //modified
 };

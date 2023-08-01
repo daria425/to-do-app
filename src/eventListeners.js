@@ -68,13 +68,18 @@ function removeOtherBackgrounds() {
   for (let i = 0; i < projects.length; i++) {
     projects[i].classList.remove("activated");
   }
+  const btns = document.querySelectorAll(".delete-project-btn");
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].classList.add("hidden");
+  }
 }
 // add active to clicked element
 
-function addBg(item) {
+function addBg(item, button) {
   if (item.dataset.index == DOMcontroller.activeProject.id - 1) {
     console.log("running");
     item.classList.add("activated");
+    button.classList.remove("hidden");
   }
 }
 export { newTaskBtn, newProjectBtn, removeOtherBackgrounds, addBg };
