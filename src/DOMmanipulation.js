@@ -40,6 +40,12 @@ class domControllerCl extends logicControllerCl {
     const itemPriority = document.createElement("div");
     itemPriority.classList.add("item-priority");
     for (let i = 0; i < this.activeProject["toDoItemsArray"].length; i++) {
+      // if (this.activeProject["toDoItemsArray"][i]["completed"] === true) {
+      //   console.log(this.activeProject["toDoItemsArray"][i]);
+      //   console.log(this.activeProject["toDoItemsArray"][i]["completed"]);
+      //   console.log("fn working");
+      //   item.classList.add("completed");
+      // }
       item.dataset.index = i;
       itemTitle.textContent = this.activeProject["toDoItemsArray"][i]["title"];
       itemDesc.textContent =
@@ -47,10 +53,8 @@ class domControllerCl extends logicControllerCl {
       itemDate.textContent = this.activeProject["toDoItemsArray"][i]["dueDate"];
       itemPriority.textContent =
         this.activeProject["toDoItemsArray"][i]["priority"];
-      if (this.activeProject["toDoItemsArray"][i]["completed"] === true) {
-        item.classList.add("completed");
-      }
     }
+
     const deleteToDobtn = document.createElement("button");
     deleteToDobtn.classList.add("delete-todo-btn");
     deleteToDobtn.textContent = "delete";
@@ -209,6 +213,7 @@ DOMcontroller.displayAll = function () {
     item.classList.add("item");
     if (this.activeProject["toDoItemsArray"][i]["completed"]) {
       console.log("fn working");
+      console.log(this);
       item.classList.add("completed");
     }
     const itemTitle = document.createElement("div");

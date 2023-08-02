@@ -48,6 +48,7 @@ if (localStorage.length === 0) {
         value.description,
         value.dueDate,
         value.priority,
+        value.id,
         value.completed
       );
       return value;

@@ -16,7 +16,8 @@ toDoForm.addEventListener("submit", function (e) {
     titleInput.value,
     descInput.value,
     dateInput.value || "no deadline",
-    priorityInput.value
+    priorityInput.value,
+    false
   );
   DOMcontroller.displayToDo();
   toDoForm.classList.toggle("visible");

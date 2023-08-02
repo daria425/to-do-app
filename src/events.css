@@ -20,5 +20,5 @@
 
 .completed {
   text-decoration: line-through;
-  background-color: #c8bcd6;
+  background-color: #c8bcd6 !important;
 }

@@ -43,6 +43,11 @@ class logicControllerCl {
     console.log(this);
     localStorage.setItem("data", JSON.stringify(this));
   }
+  getAllItems() {
+    const result = this.allProjects[0]["toDoItemsArray"].length;
+    console.log(result);
+    return result;
+  }
   static of(projectArray, activeItem) {
     return new logicControllerCl(projectArray, activeItem);
   }
@@ -60,15 +65,17 @@ class project {
     this.activeToDo = activeItem;
     this.id = id || ++project.idCounter;
   }
-  createToDo(title, description, dueDate, priority) {
-    const newItem = new toDo(title, description, dueDate, priority);
+  createToDo(title, description, dueDate, priority, completion) {
+    const newItem = new toDo(title, description, dueDate, priority, completion);
     this.toDoItemsArray.push(newItem);
     console.log(this.toDoItemsArray);
+    newItem.id = logicController.getAllItems();
     console.log(newItem);
     console.log(logicController);
     if (logicController.activeProject !== logicController.allProjects[0]) {
       logicController.allProjects[0].toDoItemsArray.push(newItem);
     }
+    logicController.getAllItems();
     localStorage.setItem("data", JSON.stringify(logicController));
     return newItem;
   }
@@ -117,12 +124,12 @@ class project {
 }
 class toDo {
   static idCounter = 0;
-  constructor(title, description, dueDate, priority, completed) {
+  constructor(title, description, dueDate, priority, id, completed) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.id = ++toDo.idCounter;
+    this.id = id || ++toDo.idCounter;
     this.completed = completed || false;
   }
   static of(title, description, dueDate, priority) {
