@@ -161,6 +161,7 @@ button {
   display: grid;
   grid-template-columns: 30% 1fr;
   height: 100vh;
+  padding-bottom: 50px;
 }
 .projects-container {
   background-color: var(--side-bar-color);
