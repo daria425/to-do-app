@@ -140,6 +140,7 @@ DOMcontroller.displayProject = function () {
     DOMcontroller.displayAll();
     // deleteProjectBtn.classList.toggle("hidden");
   });
+
   deleteProjectBtn.addEventListener("click", function (e) {
     const arrayPosition = e.target.parentElement.dataset.index;
     console.log(e.target.parentElement.previousSibling.children);

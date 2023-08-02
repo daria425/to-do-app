@@ -22,3 +22,7 @@
   text-decoration: line-through;
   background-color: #c8bcd6 !important;
 }
+
+.selection {
+  background-color: var(--focus-color) !important;
+}
