@@ -311,7 +311,7 @@ button[type="submit"] {
 }
 .item > button {
   display: block;
-  width: 70%;
+  min-width: 100px;
   color: var(--main-color);
   background-color: var(--side-bar-color);
   border: none;
@@ -341,4 +341,26 @@ button[type="submit"] {
 .item-priority::before {
   content: "Priority: ";
   font-weight: 700;
+}
+
+@media only screen and (min-width: 64em) {
+  .tasks-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .tasks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+    grid-template-rows: min-content min-content;
+  }
+  .item > button {
+    max-width: 30%;
+    font-size: 0.8em;
+    margin-top: 10px;
+  }
+  .item > div {
+    font-size: 0.8em;
+    margin-top: 10px;
+  }
 }
