@@ -257,7 +257,7 @@ DOMcontroller.displayAll = function () {
       DOMcontroller.activeProject.saveToDoAsActive(
         DOMcontroller.activeProject["toDoItemsArray"][arrayPosition]
       );
-      DOMcontroller.activeProject.setCompletion();
+      logicController.activeProject.setCompletion();
       console.log(DOMcontroller.activeProject.activeToDo);
       e.target.parentElement.classList.add("completed");
     });

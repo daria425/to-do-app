@@ -149,6 +149,9 @@ header {
   justify-content: center;
   align-items: center;
 }
+button {
+  cursor: pointer;
+}
 .app-name {
   font-weight: 700;
   font-size: 2.2em;
@@ -156,7 +159,7 @@ header {
 
 .content {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 30% 1fr;
   height: 100vh;
 }
 .projects-container {
@@ -172,15 +175,47 @@ header {
 
 .projects-container-title {
   margin-top: 100px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5px;
+}
+.add-new-project-btn {
+  color: var(--side-bar-color);
+  background-color: var(--focus-color);
+  border: none;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  padding: 2px;
+}
+.add-new-task-btn {
+  width: 80px;
+  color: var(--main-color);
+  background-color: var(--side-bar-color);
+  border: none;
+  border-radius: 2px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  padding: 2px;
 }
 .tasks-container-title {
   margin-top: 100px;
   margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
 }
 .tasks {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
+  grid-template-rows: min-content min-content;
 }
 form {
   position: fixed;
@@ -236,18 +271,34 @@ button[type="submit"] {
   padding: 2px;
 }
 
-.new-project {
-  width: 70%;
-}
-
 .projects > :first-child > button {
   display: none;
 }
-
+.projects > :first-child > div {
+  font-size: 1.2em;
+  text-align: left;
+}
+.new-project {
+  text-align: right;
+  padding: 5px;
+}
+.delete-project-btn {
+  width: 80px;
+  margin-top: 5px;
+  margin-left: calc(100% - 80px - 5px);
+  color: var(--side-bar-color);
+  background-color: var(--focus-color);
+  border: none;
+  border-radius: 2px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  padding: 2px;
+}
 .item {
   background-color: var(--header-color);
   padding: 5px;
   border-radius: 5px;
+  height: min-content;
 }
 .item:focus-within {
   transition: 0.1s;
@@ -257,6 +308,19 @@ button[type="submit"] {
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 0.7em;
+}
+.item > button {
+  display: block;
+  width: 70%;
+  color: var(--main-color);
+  background-color: var(--side-bar-color);
+  border: none;
+  border-radius: 2px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  padding: 2px;
+  font-size: 0.7em;
+  margin-top: 5px;
 }
 /* task fields */
 .item-title::before {

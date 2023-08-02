@@ -15,7 +15,7 @@ toDoForm.addEventListener("submit", function (e) {
   logicController.activeProject.createToDo(
     titleInput.value,
     descInput.value,
-    dateInput.value,
+    dateInput.value || "no deadline",
     priorityInput.value
   );
   DOMcontroller.displayToDo();
@@ -46,7 +46,7 @@ editForm.addEventListener("submit", function (e) {
   logicController.activeProject.editToDo(
     titleInput.value,
     descInput.value,
-    dateInput.value,
+    dateInput.value || "no deadline",
     priorityInput.value
   );
   DOMcontroller.updateTextContent();

@@ -1,9 +1,12 @@
+:root {
+  --main-color: #f3e8ff;
+  --side-bar-color: #221d25;
+  --header-color: #907ea5;
+  --focus-color: #c8bcd6;
+  --margins: 5px;
+}
 .visible {
   display: block;
-}
-
-.selected {
-  background-color: beige;
 }
 
 .hidden {
@@ -11,7 +14,8 @@
 }
 
 .activated {
-  background-color: blue;
+  background-color: var(--main-color);
+  color: #221d25;
 }
 
 .completed {
